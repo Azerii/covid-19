@@ -1,0 +1,97 @@
+.tabs-wrapper {
+    display: flex;
+    flex-direction: row;
+    padding: 100px 0px;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+
+.tab-item {
+    height: 100px;
+    width: 20%;
+    /* margin: 0px 60px; */
+    font-size: 47px;
+    font-weight: 300;
+    line-height: 47px;
+}
+
+.tab-item > p {
+    margin-bottom: 10px;
+    color: #4F4F4F;
+    font-size: 27px;
+    font-weight: 200;
+    line-height: 35px;
+    text-align: center;
+}
+
+.active {
+    height: 7px;
+    width: 50px;
+    margin-left: 110px;
+    background-color: #F01818;
+}
+
+/* ----------- iPhone 6, 6S, 7 and 8 ----------- */
+
+/* Portrait and Landscape */
+@media only screen 
+  and (min-device-width: 360px) 
+  and (max-device-width: 667px) 
+  and (-webkit-min-device-pixel-ratio: 2) { 
+    .tabs-wrapper {
+        padding: 50px 0px;
+    }
+    .tab-item {
+        height: 100px;
+        width: 33.33%;
+        /* margin: 0px 60px; */
+        font-size: 47px;
+        font-weight: 300;
+        line-height: 47px;
+        text-align: center;
+    }
+    
+    .tab-item > p {
+        font-size: 10px;
+        line-height: 10px;
+        text-align: center;
+    }
+    
+    .active {
+        height: 5px;
+        width: 20px;
+        margin-left: 45px;
+    }
+}
+
+@media screen and (min-device-width: 411px) and (max-device-width: 736px) {
+    .active {
+        margin-left: 50px;
+    }
+}
+
+
+/* ----------- iPhone 6+, 7+ and 8+ ----------- */
+
+/* Portrait and Landscape */
+@media only screen 
+  and (min-device-width: 414px) 
+  and (max-device-width: 736px) 
+  and (-webkit-min-device-pixel-ratio: 3) { 
+      .active {
+        margin-left: 50px;
+      }
+}
+
+
+
+/* ----------- iPhone X ----------- */
+
+/* Portrait and Landscape */
+@media only screen 
+  and (min-device-width: 375px) 
+  and (max-device-width: 812px) 
+  and (-webkit-min-device-pixel-ratio: 3) { 
+
+}

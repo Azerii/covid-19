@@ -1,0 +1,70 @@
+.banner {
+    display: flex;
+    flex: auto;
+    flex-direction: row;
+    align-items: center;
+    /* width: 100%;  */
+    background-color: #F01818;
+    height: 122px;
+    padding-left: 96px;
+    margin-top: 100px;
+}
+
+.banner > p {
+    color: #FFF;
+    font-size: 27px;
+    font-weight: 700;
+    line-height: 33px;
+}
+
+/* .banner div {
+    
+} */
+
+.banner div img {
+    height: 155px;
+    padding-top: 36px;
+}
+
+/* ----------- iPhone 6, 6S, 7 and 8 ----------- */
+
+/* Portrait and Landscape */
+@media only screen 
+  and (min-device-width: 360px) 
+  and (max-device-width: 667px) 
+  and (-webkit-min-device-pixel-ratio: 2) { 
+    .banner {
+        padding-left: 50px;
+        height: 70px;
+    }
+    .banner p {
+        font-size: 13px;
+        font-weight: 700;
+        line-height: 14px;
+    }
+    .banner div img {
+        height: 100px;
+        padding-top: 26px;
+    }
+}
+
+/* ----------- iPhone 6+, 7+ and 8+ ----------- */
+
+/* Portrait and Landscape */
+@media only screen 
+  and (min-device-width: 414px) 
+  and (max-device-width: 736px) 
+  and (-webkit-min-device-pixel-ratio: 3) { 
+
+}
+
+/* ----------- iPhone X ----------- */
+
+/* Portrait and Landscape */
+@media only screen 
+  and (min-device-width: 375px) 
+  and (max-device-width: 812px) 
+  and (-webkit-min-device-pixel-ratio: 3) { 
+
+}
+
