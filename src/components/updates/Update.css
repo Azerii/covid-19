@@ -23,7 +23,7 @@
     font-size: 20px;
     font-weight: 300;
     line-height: 32px;
-    word-wrap: wrap;
+    word-break: break-all;
 }
 
 .update-header {
@@ -103,9 +103,13 @@
 
 .post-image {
     margin-top: 50px;
-    height: 360px;
-    background-image: url(../../images/proto1.png);
+    /* background-image: url(../../images/proto1.png); */
     background-size: cover;
+}
+
+.post-image img {
+    height: 230px;
+    width: 100%;
 }
 
 .view-icon img {
@@ -164,8 +168,11 @@
         margin-top: 20px;
         height: 190px;
         border-radius: 5px;
-        background-image: url(../../images/proto1.png);
         background-size: cover;
+    }
+    .post-image img {
+        height: 164px;
+        width: 90%;
     }
     .view-icon img {
         height: 20px;
@@ -192,15 +199,25 @@
 }
 
 
-/* ----------- iPhone 6+, 7+ and 8+ ----------- */
+/* ----------- tablet ----------- */
 
 /* Portrait and Landscape */
-@media only screen 
-  and (min-device-width: 414px) 
-  and (max-device-width: 736px) 
+/* @media only screen 
+  and (min-device-width: 768px) 
+  and (max-device-width: 1024px) 
   and (-webkit-min-device-pixel-ratio: 3) { 
-
-}
+    .ad-wrapper img {
+        height: 650px;
+    }
+    
+    .post-ad img {
+        width: 100%;
+        margin-bottom: 50px;
+    }
+    .ads {
+        width: 20%;
+    }
+} */
 
 
 
