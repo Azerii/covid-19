@@ -23,7 +23,7 @@ export default function PostForm() {
 
   const tokenContext = useContext(TokenContext);
 
-  const { savePost } = tokenContext;
+  const { savePost, token, setLoggedOut } = tokenContext;
 
 
   return (
@@ -48,13 +48,23 @@ export default function PostForm() {
               <TextareaAutosize label="Title" id='post-field' aria-label="content post" rowsMin={20} />
           </Grid>
           <Grid item xs={12}>
+            <TextField
+              required
+              id="media"
+              name="media"
+              label="Link to Media"
+              fullWidth
+              
+            />
+          </Grid>
+          {/* <Grid item xs={12}>
             <Input
               required
               type='file'
               id="image"
               name="image"
             />
-          </Grid>
+          </Grid> */}
           <Grid item xs={12}>
             <TextField
               required
@@ -74,22 +84,21 @@ export default function PostForm() {
               
             />
           </Grid>
-          <Grid item xs={12} sm={6}>
+          {/* <Grid item xs={12} sm={6}>
             <TextField
               required
-              id="city"
-              name="city"
-              label="City"
+              id="email"
+              name="email"
+              label="Email"
               fullWidth
-              autoComplete="billing address-level2"
             />
           </Grid>
           <Grid item xs={12} sm={6}>
-            <TextField id="state" name="state" label="State/Province/Region" fullWidth />
-          </Grid>
-          <Grid item xs={12} sm={6}>
+            <TextField id="password" name="password" label="Password" fullWidth />
+          </Grid> */}
+          {/* <Grid item xs={12} sm={6}>
             
-          </Grid>
+          </Grid> */}
           
           <Grid item xs={12} sm={12}>
             <Button
@@ -97,19 +106,30 @@ export default function PostForm() {
                 fullWidth
                 variant="contained"
                 color="link"
-                onClick={() => savePost(document.getElementById('image'), 
+                onClick={() => savePost(
                   {
                     title: document.getElementById('title').value,
                     content: document.getElementById('post-field').value,
-                    image: document.getElementById('image').value,
+                    media: document.getElementById('media').value,
                     tags: document.getElementById('tags').value.split(','),
                     sources: document.getElementById('sources').value.split(','),
+                    token: token
                   })
                 }
                 // href='http://covid-19-api.digifigs.com/api/v1.0/Login'
               >
                 Save
               </Button>
+          </Grid>
+          <Grid item xs={12} sm={6}>
+            <Button
+              fullWidth
+              variant="contained"
+              color="link"
+              onClick={setLoggedOut}
+            >
+              logout
+            </Button>
           </Grid>
           {/* <Grid item xs={12}>
             <FormControlLabel

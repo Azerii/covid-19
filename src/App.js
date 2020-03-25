@@ -24,7 +24,7 @@ function App (props) {
           {/* <Route exact path='signIn' render={props => <SignIn />} /> */}
           <Route exact path='/execdashopboardive' render={props => <Dashboard {...props} />} />
           <Route exact path='/' component={Dash} />
-          {/* <Route exact path='/' component={Tabs} /> */}
+          <Route exact path='/' component={Tabs} />
           <Route exact path='/' component={Content} />
           {/* <Route exact path='/' component={Banner} /> */}
           <Route exact path='/' component={Footer} />

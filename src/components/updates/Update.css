@@ -23,7 +23,7 @@
     font-size: 20px;
     font-weight: 300;
     line-height: 32px;
-    word-break: break-all;
+    word-break: break-word;
 }
 
 .update-header {
@@ -52,7 +52,7 @@
 }
 
 .social-icons div img  {
-    height: 16px;
+    height: 35px;
     
 }
 
@@ -136,9 +136,8 @@
 
 /* Portrait and Landscape */
 @media only screen 
-  and (min-device-width: 360px) 
-  and (max-device-width: 667px) 
-  and (-webkit-min-device-pixel-ratio: 2) { 
+  and (min-device-width: 320px) 
+  and (max-device-width: 768px) { 
     .content-wrapper {
         flex-direction: column;
         /* justify-content: center; */
@@ -154,15 +153,15 @@
     .update-wrapper h3 {
         margin-top: 0px;
         color: #262626;
-        font-size: 10px;
+        font-size: 16px;
         font-weight: 700;
-        line-height: 11px;
+        line-height: 20px;
     }
     .update-wrapper p {
         color: #262626;
-        font-size: 6px;
+        font-size: 14px;
         font-weight: 300;
-        line-height: 9px;
+        line-height: 27px;
     }
     .post-image {
         margin-top: 20px;
@@ -172,7 +171,7 @@
     }
     .post-image img {
         height: 164px;
-        width: 90%;
+        width: 100%;
     }
     .view-icon img {
         height: 20px;
@@ -194,39 +193,8 @@
     } */
     .social-icons div p{
         font-size: 12px;
-        margin-top: 12px;
+        margin-top: 10px;
     }
 }
 
 
-/* ----------- tablet ----------- */
-
-/* Portrait and Landscape */
-/* @media only screen 
-  and (min-device-width: 768px) 
-  and (max-device-width: 1024px) 
-  and (-webkit-min-device-pixel-ratio: 3) { 
-    .ad-wrapper img {
-        height: 650px;
-    }
-    
-    .post-ad img {
-        width: 100%;
-        margin-bottom: 50px;
-    }
-    .ads {
-        width: 20%;
-    }
-} */
-
-
-
-/* ----------- iPhone X ----------- */
-
-/* Portrait and Landscape */
-@media only screen 
-  and (min-device-width: 375px) 
-  and (max-device-width: 812px) 
-  and (-webkit-min-device-pixel-ratio: 3) { 
-
-}

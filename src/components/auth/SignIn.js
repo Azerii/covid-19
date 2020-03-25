@@ -69,7 +69,7 @@ function SignIn() {
 
   const tokenContext = useContext(TokenContext);
 
-  const { getToken, authRoute } = tokenContext;
+  const { getToken } = tokenContext;
   
   return (
     <Grid container component="main" className={classes.root}>
@@ -117,8 +117,10 @@ function SignIn() {
               variant="contained"
               color="primary"
               className={classes.submit}
-              onClick={getToken}
-              href={authRoute}
+              onClick={() => getToken({
+                email: document.getElementById('email').value,
+                password: document.getElementById('password').value,
+              })}
             >
               Sign In
             </Button>

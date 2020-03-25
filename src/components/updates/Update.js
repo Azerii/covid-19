@@ -1,22 +1,15 @@
 import React, { useContext, useEffect } from 'react';
 import './Update.css';
-// import view from '../../images/view.png';
+import EmailShare from 'react-email-share-link';
+import ShareLink from 'react-twitter-share-link';
+import Linkify from 'react-linkify';
+import ReactPlayer from 'react-player';
 
-import TokenContext from '../../context/token/tokenContext';
 
-const Update = ({title, content, media, time, sources}) => {
+const Update = ({title, content, sources, time, media_path }) => {
+    // media_path = 'none';
+    const socialShare = title + '...'+ '\n' + '\n';
 
-    const tokenContext = useContext(TokenContext);
-
-    const { host, hostName } = tokenContext;
-
-    // useEffect(() => {
-    //     let d = new Date().getMinutes();
-    //     return d;
-    //     // eslint-disable-next-line
-    //   }, [])
-
-    
     return (
         <div className='update-wrapper'>
             <div className='update-header'>
@@ -24,10 +17,15 @@ const Update = ({title, content, media, time, sources}) => {
                 <div className='social'></div>
             </div>
             <h3>{title}</h3>
-            <p> {content} </p> 
-            <div className='post-image'>
-                <img src={`${host}/uploads/${media}`} alt='Views' />
-            </div>
+            <small style={{color: 'gray'}}>
+                Sources:&nbsp;&nbsp;
+                {sources.map(source => <span>{source}&nbsp;&nbsp;</span>)}
+            </small>
+
+            {media_path && media_path.toLowerCase() != 'none' && <div className='insta-embed'>
+                <ReactPlayer width='100%' height='200px'  url={media_path} playing />
+            </div>}
+            <p><Linkify>{content}</Linkify></p> 
             <div className='update-footer'>
                 <div className='views'>
                     {/* <div className='view-icon'>
@@ -35,15 +33,20 @@ const Update = ({title, content, media, time, sources}) => {
                     </div> */}
                     {/* {sources.map(source => <p>{source}</p>)} */}
                 </div>
-                <hr />
+                {/* <hr /> */}
                 <div className='social-icons'>
-                <div><p>Share&nbsp;&nbsp; </p></div>
                     <div>
-                        {/* <img src="https://img.icons8.com/color/48/000000/instagram-new.png" alt='instagram' /> */}
-                        <a href='mailto:covid19@digifigs.com'><img src="https://img.icons8.com/color/48/000000/gmail.png" alt='email' /></a>
-                        <a href='http://twitter.com/covid19_latest'><img src="https://img.icons8.com/color/48/000000/twitter-squared.png" alt='twitter' /></a>
-                        {/* <img src="https://img.icons8.com/color/48/000000/linkedin.png" alt='linkdn' /> */}
-                        {/* <img src="https://img.icons8.com/color/48/000000/facebook.png" alt='facebook' /> */}
+                        <p>Share on social media:&nbsp;&nbsp; </p>
+                    </div>
+                    <div>
+                        <ShareLink link={document.location.href} text={socialShare} hashtags={'covid19'}>
+                            {link => (
+                                <a href={link} target='_blank'><img src="https://img.icons8.com/color/96/000000/twitter.png"/></a>
+                            )}
+                        </ShareLink>
+                    </div>
+                    <div>
+                        <a href={`https://api.whatsapp.com/send?text=${socialShare + '\n' + '\n' + document.location.href}`}><img src="https://img.icons8.com/color/50/000000/whatsapp.png"/></a>
                     </div>
                 </div>
             </div>

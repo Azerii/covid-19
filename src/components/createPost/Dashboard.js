@@ -20,8 +20,10 @@ import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import NotificationsIcon from '@material-ui/icons/Notifications';
 // import { mainListItems, secondaryListItems } from './listItems';
 
+import SignIn from '../auth/SignIn';
 import PostForm from './PostForm';
 import Posts from './Posts';
+import Spinner from '../Spinner';
 
 import TokenContext from '../../context/token/tokenContext';
 
@@ -55,6 +57,7 @@ const useStyles = makeStyles(theme => ({
     ...theme.mixins.toolbar,
   },
   appBar: {
+    width: '100%',
     zIndex: theme.zIndex.drawer + 1,
     transition: theme.transitions.create(['width', 'margin'], {
       easing: theme.transitions.easing.sharp,
@@ -123,27 +126,32 @@ export default function Dashboard() {
   const classes = useStyles();
 
   const tokenContext = useContext(TokenContext);
-  const { getPosts } = tokenContext;
-  useEffect(() => {
-    getPosts();
-    // eslint-disable-next-line
-  }, []);
+  
+  const { getPosts, loggedIn, loading } = tokenContext;
+  
+  // useEffect(() => {
+  //   getPosts();
+  //   // eslint-disable-next-line
+  // }, []);
 
   const [open, setOpen] = React.useState(true);
+  
   const handleDrawerOpen = () => {
     setOpen(true);
   };
+  
   const handleDrawerClose = () => {
     setOpen(false);
   };
+  
   const fixedHeightPaper = clsx(classes.paper, classes.fixedHeight);
-
+  // if(loading) return <Spinner />
   return (
     <div className={classes.root}>
       <CssBaseline />
-      <AppBar position="absolute" className={clsx(classes.appBar, open && classes.appBarShift)}>
-        <Toolbar className={classes.toolbar}>
-          <IconButton
+      <AppBar position="absolute" className='app-bar'>
+        <Toolbar className='tool-bar'>
+          {/* <IconButton
             edge="start"
             color="inherit"
             aria-label="open drawer"
@@ -151,18 +159,18 @@ export default function Dashboard() {
             className={clsx(classes.menuButton, open && classes.menuButtonHidden)}
           >
             <MenuIcon />
-          </IconButton>
+          </IconButton> */}
           <Typography component="h1" variant="h6" color="inherit" noWrap className={classes.title}>
-            Dashboard
+            Create Post
           </Typography>
-          <IconButton color="inherit">
+          {/* <IconButton color="inherit">
             <Badge badgeContent={4} color="secondary">
               <NotificationsIcon />
             </Badge>
-          </IconButton>
+          </IconButton> */}
         </Toolbar>
       </AppBar>
-      <Drawer
+      {/* <Drawer
         variant="permanent"
         classes={{
           paper: clsx(classes.drawerPaper, !open && classes.drawerPaperClose),
@@ -175,13 +183,14 @@ export default function Dashboard() {
           </IconButton>
         </div>
         <Divider />
-        {/* <List>{mainListItems}</List> */}
+        {/* <List>{mainListItems}</List>
         <Divider />
-        {/* <List>{secondaryListItems}</List> */}
-      </Drawer>
+        <List>{secondaryListItems}</List>
+      </Drawer> */}
       <main className={classes.content}>
+        {!loggedIn && <SignIn />}
         <div className={classes.appBarSpacer} />
-        <Container maxWidth="lg" className={classes.container}>
+        {loggedIn && <Container maxWidth="lg" className={classes.container}>
           <Grid container spacing={1}>
                 <Grid item xs={12} md={8} lg={9}>
                     <PostForm />
@@ -208,7 +217,7 @@ export default function Dashboard() {
           <Box pt={4}>
             {/* <Copyright /> */}
           </Box>
-        </Container>
+        </Container>}
       </main>
     </div>
   );
