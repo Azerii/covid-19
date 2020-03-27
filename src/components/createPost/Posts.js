@@ -174,6 +174,7 @@ export default function Posts() {
                     title: document.getElementById('title-update').value,
                     content: document.getElementById('post-field-update').value,
                     media: document.getElementById('media-update').value || 'none',
+                    tags: document.getElementById('tags-update').value.split(),
                     sources: document.getElementById('sources-update').value.split(','),
                     token: token
                   }); 

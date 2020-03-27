@@ -125,7 +125,8 @@ const TokenState = props => {
         "title": update.title,
         "content": update.content,
         "media_path": update.media,
-        "sources.0": update.sources
+        "tags": update.tags,
+        "sources": update.sources
         }, {
           headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${update.token}` },
         });
