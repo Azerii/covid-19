@@ -41,7 +41,19 @@ export default function Posts() {
 
   const tokenContext = useContext(TokenContext);
 
-  const { posts, updatePost, token } = tokenContext;
+  const { posts, updatePost, token, deletePost } = tokenContext;
+
+  let postable = [];
+
+  posts.map(item => postable.push(item))
+
+  postable.reverse();
+
+  const confirmDelete = (id) => {
+    if (window.confirm("Are you sure you want to delete this post!")) {
+      deletePost({id: id, token: token});
+    }
+  }
 
 
   return (
@@ -59,7 +71,7 @@ export default function Posts() {
           </TableRow>
         </TableHead>
         <TableBody>
-          {posts.map(post => (
+          {postable.map(post => (
             <TableRow key={post.id}>
               <TableCell>{post.id}</TableCell>
               <TableCell>{post.created_at}</TableCell>
@@ -73,10 +85,21 @@ export default function Posts() {
               color="primary"
               className={classes.submit}
               onClick={() => {enableEditing(true); setPost(post)}}
-            >
-              Edit
-            </Button>
+              >
+                Edit
+              </Button>
               </TableCell>
+            <TableCell>
+              <Button
+              fullWidth
+              variant="contained"
+              color="primary"
+              className={classes.submit}
+              onClick={() => {setPost(post); confirmDelete(post.id)}}
+            >
+              Delete
+            </Button>
+            </TableCell>
             </TableRow>
           ))}
         </TableBody>

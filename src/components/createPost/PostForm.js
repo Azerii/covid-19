@@ -25,6 +25,15 @@ export default function PostForm() {
 
   const { savePost, token, setLoggedOut } = tokenContext;
 
+  const clearForm = (form) => {
+    
+    document.getElementById('title').value = '';
+    document.getElementById('post-field').value = '';
+    document.getElementById('media').value = '';
+    document.getElementById('tags').value = '';
+    document.getElementById('sources').value = '';
+    
+  }
 
   return (
     
@@ -33,9 +42,21 @@ export default function PostForm() {
         POST
       </Typography>
       <Grid container spacing={1}>
-        {/* <form name="postForm" noValidate> */}
+        {/* <form className='post-form' name="postForm" noValidate> */}
+          <Grid item xs={12} sm={6}>
+            <Button
+              className='clear-form'
+              fullWidth
+              variant="contained"
+              color="link"
+              onClick={() => clearForm()}
+            >
+              Clear Form
+            </Button>
+          </Grid>
           <Grid item xs={12} sm={6}>
             <TextField
+              className='post-field'
               required
               id="title"
               name="title"
@@ -45,10 +66,11 @@ export default function PostForm() {
             />
           </Grid>
           <Grid item xs={12} sm={12}>
-              <TextareaAutosize label="Title" id='post-field' aria-label="content post" rowsMin={20} />
+              <TextareaAutosize className='post-field' label="Title" id='post-field' aria-label="content post" rowsMin={20} />
           </Grid>
           <Grid item xs={12}>
             <TextField
+              className='post-field'
               required
               id="media"
               name="media"
@@ -67,6 +89,7 @@ export default function PostForm() {
           </Grid> */}
           <Grid item xs={12}>
             <TextField
+              className='post-field'
               required
               id="tags"
               name="tags"
@@ -77,6 +100,7 @@ export default function PostForm() {
           </Grid>
           <Grid item xs={12}>
             <TextField
+              className='post-field'
               id="sources"
               name="sources"
               label="Sources seperated by comma"
@@ -102,7 +126,6 @@ export default function PostForm() {
           
           <Grid item xs={12} sm={12}>
             <Button
-                // type="submit"
                 fullWidth
                 variant="contained"
                 color="link"
@@ -116,7 +139,7 @@ export default function PostForm() {
                     token: token
                   })
                 }
-                // href='http://covid-19-api.digifigs.com/api/v1.0/Login'
+                
               >
                 Save
               </Button>

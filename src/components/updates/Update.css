@@ -70,6 +70,10 @@
     width: 50%;
 }
 
+small {
+    word-break: break-word;
+}
+
 .ads {
     display: flex;
     flex-direction: column;

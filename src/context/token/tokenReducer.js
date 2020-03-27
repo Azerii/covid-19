@@ -4,6 +4,7 @@ import {
     UPLOAD_IMAGE,
     GET_POSTS, 
     UPDATE_POST,
+    DELETE_POST,
     SET_ACTIVE_U_STATE, SET_ACTIVE_P_STATE, SET_ACTIVE_A_STATE,
     SET_LOADING,
     SET_LOGGED_IN,
@@ -23,6 +24,7 @@ export default (state, action) => {
             return {
                 ...state,
                 post: action.payload,
+                clear: true,
                 loading: false
             }
         }
@@ -44,6 +46,12 @@ export default (state, action) => {
             return {
                 ...state,
                 post: action.payload
+            }
+        }
+        case UPDATE_POST: {
+            return {
+                ...state,
+                deleted: true
             }
         }
         case SET_ACTIVE_U_STATE: {

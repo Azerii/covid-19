@@ -5,6 +5,7 @@ export const SAVE_POST = 'savePost';
 export const UPLOAD_IMAGE = 'uploadImage';
 export const GET_POSTS = 'getPosts';
 export const UPDATE_POST = 'updatePost';
+export const DELETE_POST = 'deletePost';
 export const SET_LOADING = 'setLoading';
 export const SET_LOGGED_IN = 'setLoggedIn';
 export const SET_LOGGED_OUT = 'setLoggedOut';

@@ -8,6 +8,7 @@ import {
     UPLOAD_IMAGE,
     GET_POSTS,
     UPDATE_POST,
+    DELETE_POST,
     SET_ACTIVE_U_STATE, SET_ACTIVE_P_STATE, SET_ACTIVE_A_STATE,
     SET_LOADING,
     SET_LOGGED_IN,
@@ -26,6 +27,7 @@ const TokenState = props => {
       activeP: false, 
       activeA: false,
       loggedIn: false,
+      deleted: false,
       loading: false
     }
 
@@ -122,7 +124,7 @@ const TokenState = props => {
         "id": update.id,
         "title": update.title,
         "content": update.content,
-        // "media_path": update.media,
+        "media_path": update.media,
         "sources.0": update.sources
         }, {
           headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${update.token}` },
@@ -136,6 +138,27 @@ const TokenState = props => {
         } catch (error) {
           console.log(update);
           alert('invalid submission!');
+        }
+        getPosts();
+      }
+
+      const deletePost = async (post) => {
+        console.log(post);
+        try { let res = await axios.post('https://covid-19-api.digifigs.com/api/v1.0/DeletePost', 
+        {
+        "id": post.id,
+        }, {
+          headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${post.token}` },
+        });
+        
+        dispatch({
+          type: DELETE_POST,
+          payload: res.data
+        });
+        alert('Post deleted successfully');
+        } catch (error) {
+          
+          alert('invalid delete request!');
         }
         getPosts();
       }
@@ -157,10 +180,12 @@ const TokenState = props => {
         hostName: state.hostName,
         loading: state.loading,
         loggedIn: state.loggedIn,
+        deleted: state.deleted,
         getToken,
         savePost,
         getPosts,
         updatePost,
+        deletePost,
         setActiveUState, setActivePState, setActiveAState,
         setLoggedIn,
         setLoggedOut,
