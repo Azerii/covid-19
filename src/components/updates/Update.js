@@ -6,7 +6,7 @@ import Linkify from 'react-linkify';
 import ReactPlayer from 'react-player';
 
 
-const Update = ({title, content, sources, time, media_path }) => {
+const Update = ({title, content, sources, time, media_path, image }) => {
     // media_path = 'none';
     const socialShare = title + '...'+ '\n' + '\n';
 
@@ -25,7 +25,11 @@ const Update = ({title, content, sources, time, media_path }) => {
             {media_path && media_path.toLowerCase() != 'none' && <div className='insta-embed'>
                 <ReactPlayer width='100%' height='200px'  url={media_path} playing />
             </div>}
-            <p><Linkify>{content}</Linkify></p> 
+            {image && image.toLowerCase() != 'none' && <div className='post-image'>
+                <img src={image} alt='media' />
+            </div>}
+            <p><Linkify>{content}</Linkify></p>
+             
             <div className='update-footer'>
                 <div className='views'>
                     {/* <div className='view-icon'>

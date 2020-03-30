@@ -1,4 +1,9 @@
 import React, { useContext, useEffect } from 'react';
+import { makeStyles } from '@material-ui/core/styles';
+import InputLabel from '@material-ui/core/InputLabel';
+import MenuItem from '@material-ui/core/MenuItem';
+import FormControl from '@material-ui/core/FormControl';
+import Select from '@material-ui/core/Select';
 import './Update.css';
 import Update from './Update';
 import LazyLoad from 'react-lazyload';
@@ -12,7 +17,31 @@ import Spinner from '../Spinner';
 
 import TokenContext from '../../context/token/tokenContext';
 
+
+const useStyles = makeStyles(theme => ({
+    formControl: {
+      margin: theme.spacing(1),
+      minWidth: 120,
+    },
+  }));
+
 const Content = () => {
+
+    const classes = useStyles();
+    const [region, setRegion] = React.useState('');
+    const [open, setOpen] = React.useState(false);
+
+    const handleChange = event => {
+        setRegion(event.target.value);
+    };
+
+    const handleClose = () => {
+        setOpen(false);
+    };
+
+    const handleOpen = () => {
+        setOpen(true);
+    };
 
     const tokenContext = useContext(TokenContext);
 
@@ -43,6 +72,8 @@ const Content = () => {
         activeTab.active = activeA;
         activeTab.tag = 'a';
     }
+
+    
     
 
     return (
@@ -59,7 +90,32 @@ const Content = () => {
                 <div className='post-ad'>
                         <img src={ads7} alt='ad' />
                 </div>
-                
+                {/* <div className='filter'>
+                    <div>
+                        <p>Filter by Region: </p>
+                    </div>
+                    <div>
+                        <FormControl className={classes.formControl}>
+                            <InputLabel id="demo-controlled-open-select-label">Region</InputLabel>
+                            <Select
+                            labelId="demo-controlled-open-select-label"
+                            id="demo-controlled-open-select"
+                            open={open}
+                            onClose={handleClose}
+                            onOpen={handleOpen}
+                            value={region}
+                            onChange={handleChange}
+                            >
+                            <MenuItem value="">
+                                <em>None</em>
+                            </MenuItem>
+                            <MenuItem value={'oyo'}>Oyo</MenuItem>
+                            <MenuItem value={'FCT'}>FCT</MenuItem>
+                            <MenuItem value={'Lagos'}>Lagos</MenuItem>
+                            </Select>
+                        </FormControl>
+                    </div>
+                </div> */}
                 {postable.map(post => activeTab.active && post.tags[0].toLowerCase() === activeTab.tag && (
                     <LazyLoad key={post.id} placeholder={<Spinner />} >
                         <Update 
@@ -68,7 +124,12 @@ const Content = () => {
                                 return <span key={key}>{item}<br/></span>})} 
                             time={post.created_at} 
                             sources={post.sources} 
-                            media_path={post.media_path}
+                            media={post.attachments === null ? 'none' : post.attachments[0].map((item, key) => {
+                                return item.path
+                            })}
+                            image={post.attachments === null ? 'none' : post.attachments[1].map((item, key) => {
+                                return item.path
+                            })}
                         ></Update>
                     </LazyLoad>
                 ))}     

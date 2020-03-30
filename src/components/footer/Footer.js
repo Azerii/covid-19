@@ -14,10 +14,10 @@ const Footer = () => {
                 </div>
                 <div className='social'>
                     <div className='icon'>
-                        <a href='mailto:covid19@digifigs.com'><img src="https://img.icons8.com/windows/64/000000/new-post.png"/></a>
+                        <a href='mailto:covid19@digifigs.com'><img src="https://img.icons8.com/windows/64/000000/new-post.png" alt=''/></a>
                     </div>
                     <div className='icon'>
-                        <a href='http://twitter.com/covid19_latest'><img src="https://img.icons8.com/windows/32/000000/twitter.png"/></a>
+                        <a href='http://twitter.com/covid19_latest'><img src="https://img.icons8.com/windows/32/000000/twitter.png" alt=''/></a>
                     </div>
                 </div>
             </div>

@@ -59,31 +59,45 @@ const TokenState = props => {
 
       const savePost = async (formFields) => {
         setLoading();
-        // const form = new FormData();
+        const form = new FormData();
         
-        // try{
-        //   form.append('image', image.files[0], formFields.image);
-        // } catch(err) {
-        //   console.log(err)
-        // }
+        let img_path = 'none';
+        if (formFields.image.value) {
+        
+        form.append('media', formFields.image.files[0], formFields.image.value);
 
-        // let res = await axios.post('https://covid-19-api.digifigs.com/api/v1.0/UploadImage', 
-        // form, {
-        //   headers: { 'Content-Type': 'multipart/form-data', 'Authorization': `Bearer ${formFields.token}`},
-        // });
-        // dispatch({
-        //   type: UPLOAD_IMAGE,
-        //   payload: res.data
-        // });
-        // const img_path = res.data.success.image_uri
-        // if(formFields.media) let medaiPath = formFields.media
-        try { let res = await axios.post('https://covid-19-api.digifigs.com/api/v1.0/CreatePost', 
+        let res = await axios.post('https://covid-19-api.digifigs.com/api/v1.0/UploadMedia', form, {
+          headers: { 'Content-Type': 'multipart/form-data', 'Authorization': `Bearer ${formFields.token}`},
+        });
+        dispatch({
+          type: UPLOAD_IMAGE,
+          payload: res.data
+        });
+        img_path = res.data.success.image_uri 
+
+      }
+        
+        
+        
+        try { 
+          let res = await axios.post('https://covid-19-api.digifigs.com/api/v1.0/CreatePost', 
         {
         "title": formFields.title,
         "content": formFields.content,
-        "media_path": formFields.media,
         "tags": formFields.tags,
-        "sources": formFields.sources
+        "sources": formFields.sources,
+        "attachments": [
+          {
+            "media_type": "youtube_video",
+            "path": formFields.media || 'none'
+          },
+          {
+            "media_type": "image",
+            "path": img_path
+          }
+        ],
+        "country": formFields.country,
+        "state": formFields.state,
         }, {
           headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${formFields.token}` },
         });
@@ -126,7 +140,9 @@ const TokenState = props => {
         "content": update.content,
         "media_path": update.media,
         "tags": update.tags,
-        "sources": update.sources
+        "sources": update.sources,
+        "country": update.country,
+        "state": update.state,
         }, {
           headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${update.token}` },
         });

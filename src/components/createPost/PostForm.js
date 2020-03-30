@@ -25,13 +25,15 @@ export default function PostForm() {
 
   const { savePost, token, setLoggedOut } = tokenContext;
 
-  const clearForm = (form) => {
+  const clearForm = () => {
     
     document.getElementById('title').value = '';
     document.getElementById('post-field').value = '';
     document.getElementById('media').value = '';
     document.getElementById('tags').value = '';
     document.getElementById('sources').value = '';
+    document.getElementById('country').value = '';
+    document.getElementById('state').value = '';
     
   }
 
@@ -46,7 +48,7 @@ export default function PostForm() {
           <Grid item xs={12} sm={6}>
             <Button
               className='clear-form'
-              fullWidth
+              fullWidth={true}
               variant="contained"
               color="link"
               onClick={() => clearForm()}
@@ -61,7 +63,7 @@ export default function PostForm() {
               id="title"
               name="title"
               label="Title"
-              fullWidth
+              fullWidth={true}
               
             />
           </Grid>
@@ -75,18 +77,18 @@ export default function PostForm() {
               id="media"
               name="media"
               label="Link to Media"
-              fullWidth
+              fullWidth={true}
               
             />
           </Grid>
-          {/* <Grid item xs={12}>
+          <Grid item xs={12}>
             <Input
               required
               type='file'
               id="image"
               name="image"
             />
-          </Grid> */}
+          </Grid>
           <Grid item xs={12}>
             <TextField
               className='post-field'
@@ -94,7 +96,7 @@ export default function PostForm() {
               id="tags"
               name="tags"
               label="Tags seperated by comma"
-              fullWidth
+              fullWidth={true}
               
             />
           </Grid>
@@ -104,7 +106,27 @@ export default function PostForm() {
               id="sources"
               name="sources"
               label="Sources seperated by comma"
-              fullWidth
+              fullWidth={true}
+              
+            />
+          </Grid>
+          <Grid item xs={12}>
+            <TextField
+              className='post-field'
+              id="country"
+              name="country"
+              label="Country"
+              fullWidth={true}
+              
+            />
+          </Grid>
+          <Grid item xs={12}>
+            <TextField
+              className='post-field'
+              id="state"
+              name="state"
+              label="State"
+              fullWidth={true}
               
             />
           </Grid>
@@ -123,19 +145,21 @@ export default function PostForm() {
           {/* <Grid item xs={12} sm={6}>
             
           </Grid> */}
-          
           <Grid item xs={12} sm={12}>
             <Button
-                fullWidth
+                fullWidth={true}
                 variant="contained"
                 color="link"
                 onClick={() => savePost(
                   {
                     title: document.getElementById('title').value,
                     content: document.getElementById('post-field').value,
-                    media: document.getElementById('media').value,
+                    image: document.getElementById('image'),
+                    media: document.getElementById('media').value || 'none',
                     tags: document.getElementById('tags').value.split(','),
                     sources: document.getElementById('sources').value.split(','),
+                    country: document.getElementById('country').value,
+                    state: document.getElementById('state').value,
                     token: token
                   })
                 }
@@ -146,7 +170,7 @@ export default function PostForm() {
           </Grid>
           <Grid item xs={12} sm={6}>
             <Button
-              fullWidth
+              fullWidth={true}
               variant="contained"
               color="link"
               onClick={setLoggedOut}

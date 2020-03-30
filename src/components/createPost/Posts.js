@@ -11,9 +11,11 @@ import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import TextField from '@material-ui/core/TextField';
 import TextareaAutosize from '@material-ui/core/TextareaAutosize';
+import Input from '@material-ui/core/Input';
 import Title from './Title';
 
 import TokenContext from '../../context/token/tokenContext';
+import './PostForm.css'
 
 // Generate Order Data
 function createData(id, date, name, shipTo, paymentMethod, amount) {
@@ -80,7 +82,7 @@ export default function Posts() {
               <TableCell>{post.sources}</TableCell>
               <TableCell>
               <Button
-              fullWidth
+              fullWidth={true}
               variant="contained"
               color="primary"
               className={classes.submit}
@@ -91,7 +93,7 @@ export default function Posts() {
               </TableCell>
             <TableCell>
               <Button
-              fullWidth
+              fullWidth={true}
               variant="contained"
               color="primary"
               className={classes.submit}
@@ -117,20 +119,29 @@ export default function Posts() {
               id="title-update"
               name="title"
               label="Title"
-              fullWidth
+              fullWidth={true}
               defaultValue={post.title}
             />
           </Grid>
           <Grid item xs={12} sm={12}>
               <TextareaAutosize fullWidth label="Title" id='post-field-update' aria-label="content post" rowsMin={20} defaultValue={post.content} />
           </Grid>
+          {/* <Grid item xs={12}>
+            <Input
+              required
+              type='file'
+              id="image-update"
+              name="image"
+              defaultValue={post.media_path || 'none'}
+            />
+          </Grid> */}
           <Grid item xs={12}>
             <TextField
               required
               id="media-update"
               name="media"
               label="Link to Media"
-              fullWidth
+              fullWidth={true}
               defaultValue={post.media || 'none'}
             />
           </Grid>
@@ -148,7 +159,7 @@ export default function Posts() {
               id="tags-update"
               name="tags"
               label="Tags seperated by comma"
-              fullWidth
+              fullWidth={true}
               defaultValue={post.tags}
             />
           </Grid>
@@ -157,14 +168,34 @@ export default function Posts() {
               id="sources-update"
               name="sources"
               label="Sources seperated by comma"
-              fullWidth
+              fullWidth={true}
               defaultValue={post.sources}
             />
-          </Grid>          
+          </Grid>    
+          <Grid item xs={12}>
+            <TextField
+              className='post-field'
+              id="country-update"
+              name="country"
+              label="Country"
+              fullWidth={true}
+              defaultValue={post.country}
+            />
+          </Grid>
+          <Grid item xs={12}>
+            <TextField
+              className='post-field'
+              id="state-update"
+              name="state"
+              label="State"
+              fullWidth={true}
+              defaultValue={post.state}
+            />
+          </Grid>      
           <Grid item xs={12} sm={12}>
             <Button
-                // type="submit"
-                fullWidth
+                
+                fullWidth={true}
                 variant="contained"
                 color="link"
                 onClick={() => {
@@ -173,9 +204,12 @@ export default function Posts() {
                     id: post.id,
                     title: document.getElementById('title-update').value,
                     content: document.getElementById('post-field-update').value,
+                    // image: document.getElementById('image-update'),
                     media: document.getElementById('media-update').value || 'none',
                     tags: document.getElementById('tags-update').value.split(),
                     sources: document.getElementById('sources-update').value.split(','),
+                    country: document.getElementById('country-update').value,
+                    state: document.getElementById('state-update').value,
                     token: token
                   }); 
                   enableEditing(false)}
@@ -184,7 +218,7 @@ export default function Posts() {
                 Save
               </Button>
               <Button 
-                fullWidth
+                fullWidth={true}
                 variant="contained"
                 color="link"
                 onClick={() => enableEditing(false)}
